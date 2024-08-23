@@ -18,6 +18,8 @@ emisionesGEIGeneradasEnAcapulco = 412367
 emisionesGEIPorToneladaDeBausra = emisionesGEIGeneradasEnAcapulco/basuraGeneradaEnAcapulcoTON
 
 
+"""Los usuarios en BioWay App, cada vez que birndan sus reciclables obtienen 20 puntos"""
+
 puntosUsuario = int(input("Ingresa el número de puntos que tienes en tu BioWay App: "))
 
 numVecesUsuarioBrinda = puntosUsuario/20 #Cada vez que el usuario brinda sus reciclables obtiene 20 puntos
