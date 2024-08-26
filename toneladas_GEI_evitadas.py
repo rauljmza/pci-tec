@@ -37,11 +37,24 @@ totalReciclado = plasticoReciclado + cartonPapelReciclado
 "                    Convertir kg a toneladas"
 emisionesEvitadas = (totalReciclado / 1000) * emisionesGEIPorToneladaDeBausra
 
+toenladas_GEI_por_kilometro_carro = 143 / 1000000
+toneladas_GEI_año_carro = toenladas_GEI_por_kilometro_carro * 15000 #15,000 km
+
+
+
+
 #El ":.2f" es para reducirlo a 2 decimales los resultados
 
 print(f"Felicidades! Has brindado un total de {numVecesUsuarioBrinda} veces tus reciclables, aproximadamente {basuraTotalUsuario} kg de residuos")
-print(f"De los cuales {plasticoReciclado} kg son plastico, y {cartonPapelReciclado:.2f} kg son de Cartón y/o Papel.")
+print(f"De los cuales {plasticoReciclado:.2f} kg son plastico, y {cartonPapelReciclado:.2f} kg son de Cartón y/o Papel.")
 print(f"¡Has evitado aproximadamente {emisionesEvitadas:.2f} toneladas de CO2 por reciclar!")
+
+#Equivalencia de toneladas de CO2 evitadas
+
+"""Un promedio normal que se puede esperar del recorrido de un vehiculo en un año oscila entre 15000 a 27000"""
+if emisionesEvitadas >= toneladas_GEI_año_carro:
+    print(f"Has evitado el equivalente al uso del carro durante un año")
+
 print("Recuerda que con BioWay Juntos por un Mundo Mejor")
 
 "Esto equivaldría a....." #HACER
