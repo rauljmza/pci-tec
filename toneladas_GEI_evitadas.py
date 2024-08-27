@@ -6,6 +6,7 @@ Calcula las emisiones GEI evitadas por reciclar en BioWay.
 basuraGeneradaPorPersonaPorDia = 1.1 # kg de basura generada por persona al día
 porcentajePlastico = 0.11 # 11% de la basura total son plasticos
 porcentajeCartonPapel = 0.142 # 14.2% corresponde a papel y cartón
+porcentajeAluminio = 0.018 # 1.8% corresponde al aluminio
 
 """Emisiones GEI (CO2-eq) Disposición de RSU (toneladas) / Reciclados RSU (toneladas)"
 De acuerdo a datos de Acapulco obtenidos de Emisiones de Gases de Efecto Invernadero en Vertederos de Residuos Sólidos Urbanos (2017), 317,173
@@ -25,11 +26,17 @@ puntosUsuario = int(input("Ingresa el número de puntos que tienes en tu BioWay 
 numVecesUsuarioBrinda = puntosUsuario/20 #Cada vez que el usuario brinda sus reciclables obtiene 20 puntos
 
 basuraTotalUsuario = basuraGeneradaPorPersonaPorDia * numVecesUsuarioBrinda #Determinar la basura reciclable brindada
+#__________________________________________________________________________________________________________________________
 
-"Cuánto representa cada material (cartón, papel, aluminio) respecto a la basura total para determinar la basura brindada"
+"¿Cuánto representa cada material (cartón, papel, aluminio) respecto a la basura total para determinar la basura brindada?"
+
 plasticoReciclado = basuraTotalUsuario * porcentajePlastico #en kg
 
 cartonPapelReciclado = basuraTotalUsuario * porcentajeCartonPapel #en kg
+
+aluminioReciclado = basuraTotalUsuario * porcentajeAluminio #en kg
+
+#__________________________________________________________________________________________________________________________
 
 "Calculo de emisiones CO2-eq evitadas"
 totalReciclado = plasticoReciclado + cartonPapelReciclado
@@ -40,7 +47,7 @@ emisionesEvitadas = (totalReciclado / 1000) * emisionesGEIPorToneladaDeBausra
 toenladas_GEI_por_kilometro_carro = 143 / 1000000
 toneladas_GEI_año_carro = toenladas_GEI_por_kilometro_carro * 15000 #15,000 km
 
-
+#_________________________________________________________________________________________________________________________
 
 
 #El ":.2f" es para reducirlo a 2 decimales los resultados
