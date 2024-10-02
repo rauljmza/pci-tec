@@ -104,7 +104,7 @@ def metaAlcanzarEmisiones():
 
     print("\nMateriales que ha brindado: ")
     for i, materialRecicladoUsuario in enumerate(materiales_brindados, 1):
-        print(f"{i}. {materialRecicladoUsuario}")
+        print(f"Ocasión {i}: {materialRecicladoUsuario}")
 
     print("\nRecuerda que con BioWay Juntos por un Mundo Mejor")
 
