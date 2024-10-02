@@ -28,6 +28,8 @@ def materialReciclado(basura,porcentajeMaterial):
 
 def metaAlcanzarEmisiones():
     
+    materiales_brindados = []
+    
     while True:
             metaEmisiones = float(input("Ingresa la meta de toneladas de emisiones GEI que deseas evitar: "))
             if metaEmisiones <=0:
@@ -43,6 +45,8 @@ def metaAlcanzarEmisiones():
     while puntosUsuario >= 20:
         puntosUsuario -= 20
         numVecesUsuarioBrinda += 1
+        materialRecicladoUsuario = input(f"Ingresa el material que brindaste en la ocacsión {numVecesUsuarioBrinda}, (plástico, papel, cartón, aluminio): ").lower()
+        materiales_brindados.append(materialRecicladoUsuario)
 
     basuraTotalUsuario = BASURA_GENERADA_POR_PERSONA_AL_DIA * numVecesUsuarioBrinda #Determinar la basura reciclable brindada
     #__________________________________________________________________________________________________________________________
@@ -97,6 +101,10 @@ def metaAlcanzarEmisiones():
     """Un promedio normal que se puede esperar del recorrido de un vehiculo en un año oscila entre 15000 a 27000"""
     if emisionesEvitadas >= toneladas_GEI_año_carro:
         print(f"Has evitado el equivalente al uso del carro durante un año")
+
+    print("\nMateriales que ha brindado: ")
+    for i, materialRecicladoUsuario in enumerate(materiales_brindados, 1):
+        print(f"{i}. {materialRecicladoUsuario}")
 
     print("\nRecuerda que con BioWay Juntos por un Mundo Mejor")
 
