@@ -4,11 +4,18 @@ Calcula las emisiones GEI evitadas por reciclar en BioWay.
 """
 
 BASURA_GENERADA_POR_PERSONA_AL_DIA = 1.1 # kg de basura generada por persona al día
-PORCENTAJE_PLASTICO = 0.11 # 11% de la basura total son plasticos
-PORCENTAJE_CARTON_PAPEL = 0.142 # 14.2% corresponde a papel y cartón
-PORCENTAJE_ALUMINIO = 0.018 # 1.8% corresponde al aluminio
 
-"""Emisiones GEI (CO2-eq) Disposición de RSU (toneladas) / Reciclados RSU (toneladas)"
+"Los porcentajes que representan los materiales del total de basura generada por perosna es constante"
+
+PORCENTAJE_MATERIALES = {
+    "plastico": 0.11, # 11% de la basura total son plasticos
+    "papel": 0.071, # 14.2% corresponde a papel y cartón
+    "carton": 0.071,
+    "aluminio": 0.018 # 1.8% corresponde al aluminio
+}
+
+"""
+Emisiones GEI (CO2-eq) Disposición de RSU (toneladas) / Reciclados RSU (toneladas)
 De acuerdo a datos de Acapulco obtenidos de Emisiones de Gases de Efecto Invernadero en Vertederos de Residuos Sólidos Urbanos (2017), 317,173
 toneladas de residuos que generan entre todos los habitantes, generan 412,367 toneladas de emisiones GEI (CO2-eq)..
 """
