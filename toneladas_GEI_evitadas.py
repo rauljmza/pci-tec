@@ -1,3 +1,5 @@
+import random
+
 """
 Proyecto Emisiones de Gases de Efecto Invernadero (ton) evitadas con BioWay
 Calcula las emisiones GEI evitadas por reciclar en BioWay.
@@ -25,10 +27,64 @@ emisionesGEIGeneradasEnAcapulco = 412367
 
 emisionesGEIPorToneladaDeBausra = emisionesGEIGeneradasEnAcapulco/basuraGeneradaEnAcapulcoTON
 
+#Un promedio normal que se puede esperar del recorrido de un vehiculo en un año oscila entre 15000 a 27000
+   
+kilometroPromedioCarroAnual = 15000
 
-"""Los usuarios en BioWay App, cada vez que birndan sus reciclables obtienen 20 puntos"""
+toneladasGEIPorKilometroCarro = 143 / 1000000
 
-#Se añade una función que establece una meta de emisiones evitadas, dicha meta establecida por el usuario
+
+"""
+Por cuestiones de optimización se generarán datos al azar de usuarios que, en base a sus puntos, generen estadísticas
+
+Nota: Los usuarios en BioWay App, cada vez que birndan sus reciclables obtienen 20 puntos
+"""
+#Se crea el "recipiente" de un usuario, que contiene un id, sus puntos y recolecciones
+
+def crearUsuario(id):
+    return {
+        "id": id,
+        "puntos": 0,
+        "recolecciones": []
+    }
+    
+def agregarRecoleccion(usuario, material, cantidad):
+    usuario["recolecciones"].append((material,cantidad))
+    usuario["puntos"] +=20
+    
+def calcularBasuraTotal(usuario):
+    return sum(cantidad for _, cantidad in usuario["recolecciones"])
+
+#Se añade una función que crea un usuario al azar con el uso de un diccionario para contener su ID que será el número con el que fue creado, así como puntos aleatorios y donaciones realizadas
+
+
+def generaUsuariosAleatorios(numUsuarios): #Dicha función recibe la cantidad de usuarios que el ejecutor del código define que quiere crear
+    
+    usuarios = [] #Se define la lista que contendrá a los usuarios, así como sus datos
+    
+    for i in range(numUsuarios): #Con cada iteración creará un usuario nuevo
+        usuario = crearUsuario(i+1)
+        
+        numRecolecciones = random.randint(1,10)
+        
+        for _ in range(numRecolecciones):
+            
+            material = random.choice(list(PORCENTAJE_MATERIALES.keys())) #Elige y crea aleatoriamente para el usuadio como lista un material para asignarle un valor en kilogramos
+            
+            cantidad = round(random.uniform(0.5, 5 ),2) #Define el rango de aleatoriedad de kilos donados
+            
+            agregarRecoleccion(usuario,material,cantidad)
+            
+        usuarios.append(usuario) #Se inserta en la lista del usuario el número de recolecciones, y la cantidad de reciclables donados
+        
+    return usuarios
+
+def calcularEmisionesEvitadas(totalReciclado): #Se calcularán las emisiones evitadas en base a la función anterior que generó el total en kilogramos reciclado
+    return
+""" 
+Reescritura y planeación del código
+
+"""
 
 def materialReciclado(basura,porcentajeMaterial):
             return basura * porcentajeMaterial
