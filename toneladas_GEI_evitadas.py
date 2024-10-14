@@ -79,98 +79,57 @@ def generaUsuariosAleatorios(numUsuarios): #Dicha función recibe la cantidad de
         
     return usuarios
 
+
 def calcularEmisionesEvitadas(totalReciclado): #Se calcularán las emisiones evitadas en base a la función anterior que generó el total en kilogramos reciclado
-    return
-""" 
-Reescritura y planeación del código
+    return (totalReciclado / 1000) * emisionesGEIPorToneladaDeBausra
 
-"""
+def emisionesEquivalenciaCarro(emisionesEvitadas):
+    return emisionesEvitadas / (toneladasGEIPorKilometroCarro * kilometroPromedioCarroAnual)
 
-def materialReciclado(basura,porcentajeMaterial):
-            return basura * porcentajeMaterial
-
-def metaAlcanzarEmisiones():
+def mostrarEstadisticas(usuario):
+    basuraTotal =  calcularBasuraTotal(usuario)
+    print(f"\nEstadísticas del Usuario {usuario['id']}:")
+    print(f"Puntos acumulados: {usuario['puntos']}")
+    print(f"Número de recolecciones: {len(usuario['recolecciones'])}")
+    print(f"Total de basura reciclada: {basuraTotal:.2f} kg")
     
-    materiales_brindados = []
+    materialesReciclados = {material: 0 for material in PORCENTAJE_MATERIALES}
+    for material, cantidad in usuario["recolecciones"]:
+        materialesReciclados[material]+= cantidad
+    
+    for material, cantidad in materialesReciclados.items():
+        print(f"{material.capitalize()} reciclado: {cantidad:.2f} kg")
+        
+    totalReciclado = sum(materialesReciclados.values())
+    emisionesEvitadas = calcularEmisionesEvitadas(totalReciclado)
+    print(f"\nEmisiones de CO2 evitadas: {emisionesEvitadas:.2f} toneladas")
+    print(f"Equivalente a no usar un carro durante {emisionesEquivalenciaCarro(emisionesEvitadas):.2f} años")
+
+def main():
+    numUsuarios = int(input("Ingrese el número de usuarios a generar: "))
+    usuarios =  generaUsuariosAleatorios(numUsuarios)
     
     while True:
-            metaEmisiones = float(input("Ingresa la meta de toneladas de emisiones GEI que deseas evitar: "))
-            if metaEmisiones <=0:
-                print("La meta debe ser de un número positivo.")
-                continue
-            break
-    
-    puntosUsuario = int(input("Ingresa el número de puntos que tienes en tu BioWay App: "))
-
-    #numVecesUsuarioBrinda = puntosUsuario/20 #Cada vez que el usuario brinda sus reciclables obtiene 20 puntos
-    numVecesUsuarioBrinda = 0
-    
-    while puntosUsuario >= 20:
-        puntosUsuario -= 20
-        numVecesUsuarioBrinda += 1
-        materialRecicladoUsuario = input(f"Ingresa el material que brindaste en la ocacsión {numVecesUsuarioBrinda}, (plástico, papel, cartón, aluminio): ").lower()
-        materiales_brindados.append(materialRecicladoUsuario)
-
-    basuraTotalUsuario = BASURA_GENERADA_POR_PERSONA_AL_DIA * numVecesUsuarioBrinda #Determinar la basura reciclable brindada
-    #__________________________________________________________________________________________________________________________
-
-    "¿Cuánto representa cada material (cartón, papel, aluminio) respecto a la basura total para determinar la basura brindada?"
-
-    #PUEDE CONVERTIRSE EN UNA FUCNION FUNCION (basuraTotalUsuario, Porcentaje_Plastico)
-
+        print("\n1. Mostrar estadísticas de todos los usuarios")
+        print("2. Mostrar estadísticas de un usuario específico")
+        print("3. Salir")
+        opcion = input("Selecciones una opción: ")
         
-    
-    plasticoReciclado = materialReciclado(basuraTotalUsuario,PORCENTAJE_PLASTICO) #en kg
-
-    cartonPapelReciclado = materialReciclado(basuraTotalUsuario,PORCENTAJE_CARTON_PAPEL) #en kg
-
-    aluminioReciclado = materialReciclado(basuraTotalUsuario,PORCENTAJE_ALUMINIO) #en kg
-
-    #__________________________________________________________________________________________________________________________
-
-    "Calculo de emisiones CO2-eq evitadas"
-    totalReciclado = plasticoReciclado + cartonPapelReciclado + aluminioReciclado
-
-    "                    Convertir kg a toneladas"
-    emisionesEvitadas = (totalReciclado / 1000) * emisionesGEIPorToneladaDeBausra
-
-    #_________________________________________________________________________________________________________________________
-    toenladas_GEI_por_kilometro_carro = 143 / 1000000
-    toneladas_GEI_año_carro = toenladas_GEI_por_kilometro_carro * 15000 #15,000 km
-
-    #_________________________________________________________________________________________________________________________
-
-
-    #El ":.2f" es para reducirlo a 2 decimales los resultados
-
-    print(f"\nFelicidades! Has brindado un total de {numVecesUsuarioBrinda} veces tus reciclables, aproximadamente {basuraTotalUsuario:.2f} kg de residuos.")
-    print(f"\nDe los cuales {plasticoReciclado:.2f} kg son plastico, y {cartonPapelReciclado:.2f} kg son de Cartón y/o Papel.")
-    print(f"\n¡Has evitado aproximadamente {emisionesEvitadas:.2f} toneladas de CO2 por reciclar!")
-    
-    #_________________________________________________________________________________________________________________________
-    
-    #Verificar si alcanzó la meta
-    if emisionesEvitadas > metaEmisiones:
-        print(f"¡Felicidades! Has alcanzado tu meta de evitar {metaEmisiones:.2f} toneladas de CO2.")
-    else:
-        #Calcular cuántas veces más debe brindar para alcanzar la meta por regla de tres
-        vecesFaltantes = (metaEmisiones * numVecesUsuarioBrinda)/emisionesEvitadas
-        print(f"\nTe faltan aproximadamente {vecesFaltantes:.2f} veces más de brindar basura para alcanzar tu meta.")
-
-
-
-    #Equivalencia de toneladas de CO2 evitadas PUEDE SER UNA FUNCION TAMBIEN funcion(emisionesEvitadas)
-
-    """Un promedio normal que se puede esperar del recorrido de un vehiculo en un año oscila entre 15000 a 27000"""
-    if emisionesEvitadas >= toneladas_GEI_año_carro:
-        print(f"Has evitado el equivalente al uso del carro durante un año")
-
-    print("\nMateriales que ha brindado: ")
-    for i, materialRecicladoUsuario in enumerate(materiales_brindados, 1):
-        print(f"Ocasión {i}: {materialRecicladoUsuario}")
-
-    print("\nRecuerda que con BioWay Juntos por un Mundo Mejor")
-
-    "Esto equivaldría a....." #HACER    
-
-metaAlcanzarEmisiones()
+        if opcion == "1":
+            for usuario in usuarios:
+                mostrarEstadisticas(usuario)
+        elif opcion == "2":
+            idUsuarioSeleccionado = int(input("Ingrese el identificado del usuario (número de usuario): "))
+            usuario = next((u for u in usuarios if u["id"]== idUsuarioSeleccionado),None)
+            
+            if usuario:
+                mostrarEstadisticas(usuario)
+            else:
+                print("Usuario no válido")
+        elif opcion == "3":
+            break
+        else:
+            print("Opción inválida. Seleccione una opción de nuevo.")
+            
+if __name__ == "__main__":
+    main()
