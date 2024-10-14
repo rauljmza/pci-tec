@@ -1,0 +1,1 @@
+Hola! Me gustaría que se re-evaluara la competencia del Avance 3, que equivale a separar el código en funciones pequeñas y reusables, gracias!
