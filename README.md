@@ -26,12 +26,10 @@ Instrucciones:
 
 ## Pseudocódigo
 
+```
 INICIO
-
 1. DEFINIR constantes (basura por persona, porcentajes de materiales, etc.)
-
 2. ENTRADA: número de usuarios a simular (entero)
-
 3. GENERAR usuarios aleatorios
    PARA cada usuario:
      3.1. Asignar ID (entero)
@@ -39,7 +37,6 @@ INICIO
          PARA cada recolección:
            3.2.1. Elegir material al azar (cadena)
            3.2.2. Asignar cantidad al azar (flotante)
-
 4. MIENTRAS el usuario no elija salir:
    4.1. MOSTRAR menú de opciones
    4.2. ENTRADA: opción del usuario (entero)
@@ -61,5 +58,5 @@ INICIO
    
    4.6. SI NO:
          Mostrar mensaje de opción inválida
-
 FIN
+```
