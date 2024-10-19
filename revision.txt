@@ -1,1 +1,8 @@
-Hola! Me gustaría que se re-evaluara la competencia del Avance 3, que equivale a separar el código en funciones pequeñas y reusables, gracias!
+Hola! Me gustaría que se re-evaluaran las competencias:
+
+-Del Avance 1, adjunté el pseudocódigo que hacía falta.
+
+-Del Avance 3, que equivale a separar el código en funciones pequeñas y reusables.
+
+-Del Avance 6 y 7 se me marcó que no hice entrega, sin embargo sí la hice, le mandé
+correo al profesor con la evidencia adjunta.
