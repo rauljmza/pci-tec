@@ -15,7 +15,6 @@ las emisiones de gases de efecto invernadero evitadas.
 
 Este programa utiliza la biblioteca 'random' de Python para generar datos aleatorios.
 Documentación de la biblioteca (API) importada 'random': https://docs.python.org/3/library/random.html
-
 """
 import random
 
@@ -33,7 +32,6 @@ La basura total recolectada, un 11% son plásticos, un 14.2% son papel y cartón
 Fuente: INEGI, Censo Nacional de Gobiernos Municipales y Demarcaciones
 Territoriales de la Ciudad de México 2019
 https://www.inegi.org.mx/programas/cngmd/2019/
-
 """
 
 BASURA_GENERADA_POR_PERSONA_AL_DIA = 1.1 # kg de basura generada por persona al día
@@ -75,7 +73,6 @@ Nota: Los usuarios en BioWay App, cada vez que birndan sus reciclables obtienen 
 def crearUsuario(id):
     """
     ¿Qué hace la función?
-    
     Crea un nuevo usuario con identificador (id), puntos iniciales en cero, y lista de recolecciones vacía.
     
     Recibe: 
@@ -84,7 +81,6 @@ def crearUsuario(id):
     Devuelve:
         diccionario ([]): Representa al usuario en cuestión.
     """
-    
     return {
         "id": id,
         "puntos": 0,
@@ -94,7 +90,6 @@ def crearUsuario(id):
 def agregarRecoleccion(usuario, material, cantidad):
     """
     ¿Qué hace la función?
-    
     Agrega una nueva recolección al usuario, además aumenta sus puntos.
     
     Recibe:
@@ -104,24 +99,21 @@ def agregarRecoleccion(usuario, material, cantidad):
         
     Devuelve:
         Agrega recolecciones y suma puntos al usuario en su lista en el directorio.
-    """
-    
+    """ 
     usuario["recolecciones"].append((material,cantidad))
     usuario["puntos"] +=20
     
 def calcularBasuraTotal(usuario):
     """
     ¿Qué hace la función?
-    
     Calcula el total de basura reciclada por usuario.
     
     Recibe:
         usuario como diccionario: Diccionario del usuario (sus datos).
         
     Devuelve:
-        total como flotante compatible con decimales: Total de basura reciclada por el usuario.
-    """
-    
+        Total de basura reciclada por el usuario como flotante compatible con decimales.
+    """    
     return sum(cantidad for _, cantidad in usuario["recolecciones"])
 
 """
@@ -130,8 +122,7 @@ def calcularBasuraTotal(usuario):
 
 def generaUsuariosAleatorios(numUsuarios):
     """
-    ¿Qué hace la función?
-    
+    ¿Qué hace la función?    
     Genera una lista de usuarios con datos aleatorios de reciclaje, hace uso de listas, ciclos.
     Nota: Se hace uso de la biblioteca "random" de Python referenciada al inicio del código en la linea 16.
     
@@ -163,8 +154,7 @@ def generaUsuariosAleatorios(numUsuarios):
 
 def calcularEmisionesEvitadas(totalReciclado):
     """
-    ¿Qué hace la función?
-    
+    ¿Qué hace la función?    
     Calcula las emisiones de GEI evitadas basado en la cantidad de material reciclado.
     
     Recibe:
@@ -179,8 +169,7 @@ def calcularEmisionesEvitadas(totalReciclado):
 
 def emisionesEquivalenciaCarro(emisionesEvitadas):
     """
-    ¿Qué hace la función?
-    
+    ¿Qué hace la función?    
     Calcula la equivalencia de emisiones evitadas en años de evitar el uso del carro.
     
     Recibe:
@@ -188,11 +177,6 @@ def emisionesEquivalenciaCarro(emisionesEvitadas):
         
     Devuelve:
         emisionesEquivalenteCarro como flotante compatible con decimales: Años evitados de uso de carro.
-    
-    (uso de operadores, funciones)
-    recibe: emisionesEvitadas float
-    calcula la equivalencia de emisiones evitadas en años de no uso de automóvil
-    devuelve: años equivalentes float
     """
     emisionesEquivalenteAñoCarro = emisionesEvitadas / (toneladasGEIPorKilometroCarro * kilometroPromedioCarroAnual)
     
@@ -205,7 +189,6 @@ def emisionesEquivalenciaCarro(emisionesEvitadas):
 def mostrarEstadisticas(usuario):
     """
     ¿Qué hace la función?
-    
     Muestra las estadísticas de reciclaje y emisiones evitadas para un usuario.
     
     Recibe:
